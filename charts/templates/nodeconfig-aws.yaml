@@ -1,9 +1,10 @@
 {{- if eq .Values.cloudprovider "amazonec2" }}
 {{- range $index, $nodepool := .Values.nodepools }}
-apiVersion: provisioning.cattle.io/v1
+apiVersion: rke-machine-config.cattle.io/v1
 kind: Amazonec2Config
 metadata:
   name: {{ $nodepool.name }}
+  namespace: fleet-default
 ami: {{ $nodepool.ami }}
 blockDurationMinutes: {{ $nodepool.blockDurationMinutes }}
 deviceName: {{ $nodepool.deviceName }}
@@ -51,5 +52,59 @@ volumeType: {{ $nodepool.volumeType }}
 vpcId: {{ $nodepool.vpcId }}
 zone: {{ $nodepool.zone }}
 ---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: Amazonec2Config
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+ami: {{ $nodepool.ami }}
+blockDurationMinutes: {{ $nodepool.blockDurationMinutes }}
+deviceName: {{ $nodepool.deviceName }}
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+encryptEbsVolume: {{ $nodepool.encryptEbsVolume }}
+endpoint: {{ $nodepool.endpoint }}
+iamInstanceProfile: {{ $nodepool.iamInstanceProfile }}
+insecureTransport: {{ $nodepool.insecureTransport }}
+instanceType: {{ $nodepool.instanceType }}
+keypairName: {{ $nodepool.keypairName }}
+monitoring: {{ $nodepool.monitoring }}
+{{- if $nodepool.openPort}}
+openPort: {{ $nodepool.openPort }}
+{{- end }}
+privateAddressOnly: {{ $nodepool.privateAddressOnly }}
+region: {{ $nodepool.region }}
+requestSpotInstance: {{ $nodepool.requestSpotInstance }}
+retries: {{ $nodepool.retries }}
+rootSize: {{ $nodepool.rootSize }}
+securityGroup:
+{{- if $nodepool.createSecurityGroup }}
+- rancher-nodes
+{{- else }}
+{{ toYaml $nodepool.securityGroups }}
+{{- end }}
+securityGroupReadonly: {{ $nodepool.securityGroupReadonly }}
+sessionToken: {{ $nodepool.sessionToken }}
+spotPrice: {{ $nodepool.spotPrice }}
+sshKeyContents: {{ $nodepool.sshKeyContents }}
+sshUser: {{ $nodepool.sshUser }}
+subnetId: {{ $nodepool.subnetId }}
+tags: {{ $nodepool.tags }}
+useEbsOptimizedInstance: {{ $nodepool.useEbsOptimizedInstance }}
+usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+userdata: {{ $nodepool.userdata }}
+volumeType: {{ $nodepool.volumeType }}
+vpcId: {{ $nodepool.vpcId }}
+zone: {{ $nodepool.zone }}
 {{- end }}
 {{- end }}

@@ -3,6 +3,7 @@ questions:
   default: mycluster
   description: "Specify the name of the cluster"
   label: "Cluster Name"
+  required: true
   type: string
   group: "General"
 - variable: cloudCredentialSecretName
@@ -16,6 +17,7 @@ questions:
   description: "Specify Infrastructure provider for underlying nodes"
   label: "Infrastructure Provider"
   type: enum
+  required: true
   options:
   - amazonec2
   - digitalocean
@@ -28,6 +30,7 @@ questions:
   description: "Specify Kubernetes version"
   label: "Kubernetes Version"
   type: enum
+  required: true
   options:
   - v1.18.17+rke2r1
   - v1.19.9+rke2r1
@@ -56,18 +59,6 @@ questions:
     description: "Local auth access endpoint CACerts"
     type: multiline
     group: "Auth Access Endpoint"
-- variable: clusterMembers[0].principalName
-  default: 
-  label: "User"
-  description: "Specify Username to be assigned to cluster with roles"
-  type: string
-  group: "Cluster member"
-- variable: clusterMembers[0].roleTemplateName
-  default: cluster-member
-  description: "Specify Role template name that will be applied to user"
-  type: string
-  label: "Role"
-  group: "Cluster member"
 - variable: monitoring.enabled
   default: false
   label: "Enable monitoring"
@@ -88,41 +79,37 @@ questions:
     description: "Custom monitoring chart values"
     type: multiline
     group: "Monitoring"
-- variable: clusterMembers[0].roleTemplateName
-  default: cluster-member
-  description: "Specify Role template name that will be applied to user"
-  type: string
-  label: "Role"
-  group: "Cluster member"
-- variable: nodepools[0].name
+- variable: nodepool.name
   default: 
   description: "Specify nodepool name"
   type: string
   label: "Nodepool name"
+  required: true
   group: "Nodepools"
-- variable: nodepools[0].quantity
+- variable: nodepool.quantity
   default: 1
   description: "Specify node count"
   type: int
+  required: true
   label: "Node count"
   group: "Nodepools"
-- variable: nodepools[0].etcd
+- variable: nodepool.etcd
   default: true
   label: etcd
   type: boolean
   group: "Nodepools"
-- variable: nodepools[0].worker
+- variable: nodepool.worker
   default: true
   label: worker
   type: boolean
   group: "Nodepools"
-- variable: nodepools[0].controlplane
+- variable: nodepool.controlplane
   label: controlplane
   default: true
   type: boolean
   group: "Nodepools"
 # EC2
-- variable: nodepools[0].region
+- variable: nodepool.region
   label: "Region"
   default: us-west-2
   type: string
@@ -130,7 +117,7 @@ questions:
   required: true
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].zone
+- variable: nodepool.zone
   label: "Zone"
   default: a
   type: string
@@ -138,7 +125,7 @@ questions:
   required: true
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].instanceType
+- variable: nodepool.instanceType
   label: "Instance Type"
   default: t3a.medium
   type: string
@@ -146,14 +133,14 @@ questions:
   required: true
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].rootSize
+- variable: nodepool.rootSize
   label: "Root Disk Size"
   default: 16g
   type: string
   description: "AWS EC2 root disk size"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].vpcId
+- variable: nodepool.vpcId
   label: "VPC/SUBNET"
   default: ""
   type: string
@@ -161,28 +148,28 @@ questions:
   required: true
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].iamInstanceProfile
+- variable: nodepool.iamInstanceProfile
   label: "Instance Profile Name"
   default: ""
   type: string
   description: "AWS EC2 Instance Profile Name"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].ami
+- variable: nodepool.ami
   label: "AMI ID"
   default: ""
   type: string
   description: "AWS EC2 AMI ID"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].sshUser
+- variable: nodepool.sshUser
   label: "SSH Username for AMI"
   default: ubuntu
   type: string
   description: "AWS EC2 SSH Username for AMI"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-- variable: nodepools[0].createSecurityGroup
+- variable: nodepool.createSecurityGroup
   label: "Create security group"
   default: 
   type: boolean
@@ -191,14 +178,14 @@ questions:
   group: "Nodepools"
   show_subquestion_if: false
   subquestions:
-  - variable: nodepools[0].securityGroups
+  - variable: nodepool.securityGroups
     label: "Security groups"
     default: 
     type: string
     description: "Using existing security groups"
     group: "Nodepools"
 # vsphere
-- variable: nodepools[0].vcenter
+- variable: nodepool.vcenter
   label: "vSphere IP/hostname"
   default: ""
   type: hostname
@@ -206,7 +193,7 @@ questions:
   required: true
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].datacenter
+- variable: nodepool.datacenter
   label: "Vsphere Datacenter"
   default: ""
   type: hostname
@@ -214,7 +201,7 @@ questions:
   required: true
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].datastore
+- variable: nodepool.datastore
   label: "Vsphere Datastore"
   default: ""
   type: string
@@ -222,7 +209,7 @@ questions:
   required: true
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].datastoreCluster
+- variable: nodepool.datastoreCluster
   label: "Vsphere DatastoreCluster"
   default: ""
   type: string
@@ -230,49 +217,49 @@ questions:
   required: true
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].diskSize
+- variable: nodepool.diskSize
   label: "Disk Size"
   default: 20480
   type: int
   description: "vSphere size of disk for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].memorySize
+- variable: nodepool.memorySize
   label: "Memory Size"
   default: 2048
   type: int
   description: "vSphere size of memory for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].network
+- variable: nodepool.network
   label: "Network"
   default: ""
   type: string
   description: "vSphere network where the virtual machine will be attached"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].pool
+- variable: nodepool.pool
   label: "Resource Pool"
   default: ""
   type: string
   description: "vSphere resource pool for docker VM"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].sshPort
+- variable: nodepool.sshPort
   label: "SSH Port"
   default: 22
   type: int
   description: "If using a non-B2D image you can specify the ssh port"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].sshUserGroup
+- variable: nodepool.sshUserGroup
   label: "SSH User Group"
   default: docker:staff
   type: hostname
   description: "If using a non-B2D image the uploaded keys will need chown'ed, defaults to staff e.g. docker:staff"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].vappIpallocationpolicy
+- variable: nodepool.vappIpallocationpolicy
   label: "IP allocation policy"
   default: ""
   type: enum
@@ -284,7 +271,7 @@ questions:
   description: "'vSphere vApp IP allocation policy. Supported values are: dhcp, fixed, transient and fixedAllocated'"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
-- variable: nodepools[0].vappIpprotocol
+- variable: nodepool.vappIpprotocol
   label: "IP protocol"
   default: ""
   type: enum
@@ -295,70 +282,70 @@ questions:
   show_if: cloudprovider=vsphere
   group: "Nodepools"
 # DO
-- variable: nodepools[0].image
+- variable: nodepool.image
   label: "Image"
   default: ubuntu-20-04-x64
   type: string
   description: "Digital Ocean Image"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].backups
+- variable: nodepool.backups
   label: "Backup"
   default: false
   type: boolean
   description: "enable backups for droplet"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].ipv6
+- variable: nodepool.ipv6
   label: "IPv6"
   default: false
   type: boolean
   description: "enable ipv6 for droplet"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].monitoring
+- variable: nodepool.monitoring
   label: "Monitoring"
   default: false
   type: boolean
   description: "enable monitoring for droplet"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].privateNetworking
+- variable: nodepool.privateNetworking
   label: "Private Networking"
   default: false
   type: boolean
   description: "enable private networking for droplet"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].region
+- variable: nodepool.region
   label: "Region"
   default: sfo3
   type: string
   description: "Digital Ocean region"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].size
+- variable: nodepool.size
   label: "Size"
   default: s-4vcpu-8gb
   type: string
   description: "Digital Ocean size"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].userdata
+- variable: nodepool.userdata
   label: "Userdata"
   default: 
   type: multiline
   description: "File contents for userdata"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].sshPort
+- variable: nodepool.sshPort
   label: "SSH Port"
   default: 22
   type: int
   description: "SSH port"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
-- variable: nodepools[0].sshUser
+- variable: nodepool.sshUser
   label: "SSH User"
   default: root
   type: string
