@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: cluster-example
+  name: slickwarren-test
 
   # specify cluster labels
   labels: {}
@@ -10,15 +10,15 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: example
+cloudCredentialSecretName: ctw-do
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: ""
+cloudprovider: "digital-ocean"
 
 # enable network policy
 enableNetworkPolicy: false
 
-kubernetesVersion: "v1.21.0-alpha2+rke2r1"
+kubernetesVersion: "v1.21.1-rc2+rke2r1"
 
 # specify rancher helm chart values deployed into downstream cluster
 rancherValues: {}
@@ -106,7 +106,7 @@ rke:
         foo: bar
 
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
@@ -114,8 +114,8 @@ rke:
   # caCerts: ""
 
   # Specify upgrade options
-  upgradeStrategy: 
-    controlPlaneDrainOptions: 
+  upgradeStrategy:
+    controlPlaneDrainOptions:
       enabled: false
       # deleteEmptyDirData: false
       # disableEviction: false
@@ -141,7 +141,7 @@ rke:
   # additionalManifest: ""
 
   # specify private registry of rke2 cluster
-  # registries: 
+  # registries:
   #   mirrors: {}
   #   configs: {}
 
@@ -179,7 +179,7 @@ rke:
 
 # enable monitoring
 monitoring:
-  enabled: false
+  enabled: true
   # whether to pause deployment
   # paused: false
   # specify which version to install, can be semver range. If version is empty or is semver range, it will pick up the latest version.
@@ -217,7 +217,7 @@ monitoring:
 # install charts after provisioning cluster
 # charts:
 # - # specify a chart name. This is for displaying purpose
-    # name: "my-chart" 
+    # name: "my-chart"
     # whether to pause deployment
     # paused: "false"
     # specify the chart name in repository that you want to install
@@ -247,5 +247,3 @@ monitoring:
     # targetNamespace: "cattle-monitoring-system"
     # set service account for helm install
     # serviceAccount: ""
-
-
