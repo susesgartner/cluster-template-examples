@@ -23,15 +23,17 @@ rke:
   localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
-  # fqdn: foo.bar.example
+  fqdn: foo.bar.example
   # specify cacert of local access endpoint
-  # caCerts: ""
+  caCerts: "thisisatest"
 
 # specify user principal ids to be assiged as cluster members
 # clusterMembers:
 # - principalName: "local://u-z8zl5"
 #   roleTemplateName: "cluster-member"
-
+nodePoolConfig:
+  - config:
+    node-ip: 0.1.2.3
 # enable monitoring
 monitoring:
   enabled: false

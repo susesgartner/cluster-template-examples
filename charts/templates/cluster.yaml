@@ -141,7 +141,7 @@ spec:
         # Override default containerd snapshotter (default: "overlayfs")
         snapshotter: ""
         # IP address to advertise for node
-        node-ip: "1.1.1.1"
+        node-ip: {{ .Values.controlPlaneConfig.config.node-ip }}
         # Kubelet resolv.conf file
         resolv-conf: ""
         # Customized flag for kubelet process
