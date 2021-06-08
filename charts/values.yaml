@@ -10,7 +10,7 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: ctw-do
+cloudCredentialSecretName: ctw-do2
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
 cloudprovider: "digitalocean"
