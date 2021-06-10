@@ -162,6 +162,6 @@ spec:
   defaultClusterRoleForProjectMembers: {{ .Values.defaultClusterRoleForProjectMembers }}
   {{- end }}
 {{- if .Values.agentEnvs }}
-  agentEnvs:
-{{ toYaml .Values.agentEnvs | indent 4 }}
+  agentEnvVars:
+{{ toYaml .Values.agentEnvVars | indent 4 }}
 {{- end }}

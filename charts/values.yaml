@@ -10,21 +10,21 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: example
+cloudCredentialSecretName: ctw-do
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: ""
+cloudprovider: "digitalocean"
 
 # enable network policy
 enableNetworkPolicy: false
 
-kubernetesVersion: "v1.21.0-alpha2+rke2r1"
+kubernetesVersion: "v1.21.1-rc2+rke2r1"
 
 # specify rancher helm chart values deployed into downstream cluster
 rancherValues: {}
 
 # specify extra env variables in cluster-agent deployment
-agentEnvs:
+agentEnvVars:
 - name: HTTP_PROXY
   value: foo.bar
 
