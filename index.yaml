@@ -5,7 +5,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-10T12:06:30.671911-07:00"
+    created: "2021-06-10T16:05:21.103253-07:00"
     description: Cluster template for rke2
     digest: bda189b5212bc8e68f74cb440c26f59042fe65074c9fb44e7f48b4bd71569a1c
     name: cluster-template
@@ -16,7 +16,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-10T12:06:30.671057-07:00"
+    created: "2021-06-10T16:05:21.101651-07:00"
     description: Cluster template for rke2
     digest: 23d218681166f451a374ea7578af85c84b8e358de272cb1bb67cbe5c7c7d7d44
     name: cluster-template
@@ -28,11 +28,11 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-10T12:06:30.67273-07:00"
+    created: "2021-06-10T16:05:21.10374-07:00"
     description: Cluster template for rke2 that is hard coded
-    digest: eb8525d7c5fe0eb24d341ab0d418dd9e219f2c6613b99560e78a63a527c7c8ec
+    digest: c5e319771b2e4293e2923eba942ed7563dc3d09034beb16fa25236c68b38f62e
     name: cw-hardcoded-template
     urls:
     - cw-hardcoded-template-0.0.1.tgz
     version: 0.0.1
-generated: "2021-06-10T12:06:30.669299-07:00"
+generated: "2021-06-10T16:05:21.099347-07:00"
