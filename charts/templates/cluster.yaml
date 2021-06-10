@@ -1,167 +1,30 @@
 apiVersion: provisioning.cattle.io/v1
 kind: Cluster
 metadata:
-  {{- if .Values.cluster.labels }}
   labels:
-{{ toYaml .Values.cluster.labels | indent 4 }}
-  {{- end }}
-  {{- if .Values.cluster.annotations }}
+    override: false
   annotations:
-{{ toYaml .Values.cluster.annotations | indent 4 }}
-  {{- end }}
-  name: {{ .Values.cluster.name }}
+    override: false
+  name: "no-override-cluster-00"
 spec:
-  {{- if .Values.cloudCredentialSecretName }}
-  cloudCredentialSecretName: {{ .Values.cloudCredentialSecretName }}
-  {{- end }}
-  {{- if .Values.enableNetworkPolicy }}
-  enableNetworkPolicy: {{ .Values.enableNetworkPolicy }}
-  {{- end }}
-  kubernetesVersion: {{ required "kubernetes version is required" .Values.kubernetesVersion }}
-  {{- if .Values.rancherValues }}
-  rancherValues:
-{{ toYaml .Values.rancherValues | indent 4 }}
-  {{- end }}
+
+  cloudCredentialSecretName: ctw-do
+  enableNetworkPolicy: false
+  kubernetesVersion: v1.21.1-alpha5+rke2r1
+  rancherValues: {}
   rkeConfig:
     nodePools:
-    {{- if .Values.nodepools }} {{ range $index, $nodepool := .Values.nodepools }}
-    - controlPlaneRole: {{ $nodepool.controlplane }}
-      etcdRole: {{ $nodepool.etcd }}
-      workerRole: {{ $nodepool.worker }}
-      quantity: {{ $nodepool.quantity }}
-      name: {{ $nodepool.name }}
+    - controlPlaneRole: true
+      etcdRole: true
+      workerRole: true
+      quantity: 1
+      name: "qa-nooveride0"
       nodeConfigRef:
-        {{- if eq $.Values.cloudprovider "amazonec2" }}
-        kind: Amazonec2Config
-        {{- else if eq $.Values.cloudprovider "vsphere" }}
-        kind: VmwarevsphereConfig
-        {{- else if eq $.Values.cloudprovider "digitalocean" }}
         kind: DigitaloceanConfig
-        {{- else if eq $.Values.cloudprovider "azure" }}
-        kind: AzureConfig
-        {{- end}}
-        name: {{ $nodepool.name }}
-      paused: {{ $nodepool.paused }}
-      displayName: {{ $nodepool.displayName }}
-      {{- if $nodepool.rollingUpdate }}
-      rollingUpdate:
-        maxUnavailable: {{ $nodepool.rollingUpdate.maxUnavailable }}
-        maxSurge: {{ $nodepool.rollingUpdate.maxSurge }}
-      {{- end }}
-      {{- if $nodepool.machineDeploymentLabels }}
-      machineDeploymentLabels:
-{{ toYaml $nodepool.machineDeploymentLabels | indent 8 }}
-      {{- end }}
-      {{- if $nodepool.machineDeploymentAnnotations }}
-      machineDeploymentAnnotations:
-{{ toYaml $nodepool.machineDeploymentAnnotations | indent 8 }}
-      {{- end }}
-    {{- end }}
-    {{- end }}
-    {{- if .Values.rke.chartValues }}
-    chartValues:
-{{ toYaml .Values.rke.chartValues | indent 6 }}
-    {{- end }}
-    {{- if .Values.rke.controlPlaneConfig }}
+        name: "qa-nooveride0"
+      paused: false
+      displayName: "qa-nooveride0"
     controlPlaneConfig:
-{{ toYaml .Values.rke.controlPlaneConfig | indent 6 }}
-    {{- end }}
-    {{- if .Values.rke.workerConfig }}
-    workerConfig: {{ range $index, $worker := .Values.rke.workerConfig }}
-    - machineLabelSelector:
-{{ toYaml $worker.machineLabelSelector | indent 8 }}
-      {{- if $worker.config }}
-      config:
-{{ toYaml $worker.config | indent 8 }}
-      {{- end }}
-    {{- end }}
-    {{- end }}
-    {{- if .Values.rke.localClusterAuthEndpoint.enabled }}
-    localClusterAuthEndpoint:
-      enabled: {{ .Values.rke.localClusterAuthEndpoint.enabled }}
-      fqdn: {{ .Values.rke.localClusterAuthEndpoint.fqdn }}
-      caCerts: {{ .Values.rke.localClusterAuthEndpoint.caCerts }}
-    {{- end }}
-    upgradeStrategy:
-      {{- if .Values.rke.upgradeStrategy.controlPlaneDrainOptions.enabled }}
-      controlPlaneDrainOptions:
-        deleteEmptyDirData: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.deleteEmptyDirData }}
-        disableEviction: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.disableEviction }}
-        enabled: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.enabled }}
-        force: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.force }}
-        gracePeriod: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.gracePeriod }}
-        ignoreErrors: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.ignoreErrors }}
-        skipWaitForDeleteTimeoutSeconds: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.skipWaitForDeleteTimeoutSeconds }}
-        timeout: {{ .Values.rke.upgradeStrategy.controlPlaneDrainOptions.timeout }}
-        {{- end }}
-      workerConcurrency: {{ .Values.rke.upgradeStrategy.workerConcurrency | quote }}
-      controlPlaneConcurrency: {{ .Values.rke.upgradeStrategy.controlPlaneConcurrency | quote }}
-      {{- if .Values.rke.upgradeStrategy.controlPlaneDrainOptions.enabled }}
-      workerDrainOptions:
-        deleteEmptyDirData: {{ .Values.rke.upgradeStrategy.workerDrainOptions.deleteEmptyDirData }}
-        disableEviction: {{ .Values.rke.upgradeStrategy.workerDrainOptions.disableEviction }}
-        enabled: {{ .Values.rke.upgradeStrategy.workerDrainOptions.enabled }}
-        force: {{ .Values.rke.upgradeStrategy.workerDrainOptions.force }}
-        gracePeriod: {{ .Values.rke.upgradeStrategy.workerDrainOptions.gracePeriod }}
-        ignoreErrors: {{ .Values.rke.upgradeStrategy.workerDrainOptions.ignoreErrors }}
-        skipWaitForDeleteTimeoutSeconds: {{ .Values.rke.upgradeStrategy.workerDrainOptions.skipWaitForDeleteTimeoutSeconds }}
-        timeout: {{ .Values.rke.upgradeStrategy.workerDrainOptions.timeout }}
-      {{- end }}
-    {{- if .Values.rke.etcdSnapshotCloudCredentialName}}
-    etcdSnapshotCloudCredentialName: {{ .Values.rke.etcdSnapshotCloudCredentialName }}
-    {{- end }}
-    {{- if .Values.rke.additionalManifest }}
-    additionalManifest: {{ .Values.rke.additionalManifest }}
-    {{- end }}
-    {{- if .Values.rke.registries }}
-    registries:
-    {{- if .Values.rke.registries.mirrors }}
-      mirror:
-{{ toYaml .Values.rke.registries.mirrors | indent 8 }}
-    {{- end }}
-    {{- if .Values.rke.registries.configs }}
-      configs:
-{{ toYaml .Values.rke.registries.configs | indent 8 }}
-    {{- end }}
-    {{- end }}
-    {{- if .Values.rke.etcdSnapshotCreate }}
-    etcdSnapshotCreate:
-      name: {{ .Values.rke.etcdSnapshotCreate.name }}
-      nodeName: {{ .Values.rke.etcdSnapshotCreate.nodeName }}
-      {{- if .Values.rke.etcdSnapshotCreate.s3 }}
-      s3:
-        endpoint: {{ .Values.rke.etcdSnapshotCreate.s3.endpoint }}
-        endpointCA: {{ .Values.rke.etcdSnapshotCreate.s3.endpointCA }}
-        skipSSLVerify: {{ .Values.rke.etcdSnapshotCreate.s3.skipSSLVerify }}
-        bucket: {{ .Values.rke.etcdSnapshotCreate.s3.bucket }}
-        region: {{ .Values.rke.etcdSnapshotCreate.s3.region }}
-        cloudCredentialName: {{ .Values.rke.etcdSnapshotCreate.s3.cloudCredentialName }}
-        folder: {{ .Values.rke.etcdSnapshotCreate.s3.folder }}
-      {{- end }}
-    {{- end }}
-    {{- if .Values.rke.etcdSnapshotRestore }}
-    name: {{ .Values.rke.etcdSnapshotRestore.name }}
-    nodeName: {{ .Values.rke.etcdSnapshotRestore.nodeName }}
-    size: {{ .Values.rke.etcdSnapshotRestore.size }}
-    createdAt: {{ now }}
-      {{- if .Values.rke.etcdSnapshotRestore.s3 }}
-      s3:
-        endpoint: {{ .Values.rke.etcdSnapshotRestore.s3.endpoint }}
-        endpointCA: {{ .Values.rke.etcdSnapshotRestore.s3.endpointCA }}
-        skipSSLVerify: {{ .Values.rke.etcdSnapshotRestore.s3.skipSSLVerify }}
-        bucket: {{ .Values.rke.etcdSnapshotRestore.s3.bucket }}
-        region: {{ .Values.rke.etcdSnapshotRestore.s3.region }}
-        cloudCredentialName: {{ .Values.rke.etcdSnapshotRestore.s3.cloudCredentialName }}
-        folder: {{ .Values.rke.etcdSnapshotRestore.s3.folder }}
-      {{- end }}
-    {{- end }}
-  {{- if .Values.defaultPodSecurityPolicyTemplateName }}
-  defaultPodSecurityPolicyTemplateName: {{ .Values.defaultPodSecurityPolicyTemplateName }}
-  {{- end }}
-  {{- if .Values.defaultClusterRoleForProjectMembers }}
-  defaultClusterRoleForProjectMembers: {{ .Values.defaultClusterRoleForProjectMembers }}
-  {{- end }}
-{{- if .Values.agentEnvs }}
+      cni: calico
   agentEnvVars:
-{{ toYaml .Values.agentEnvVars | indent 4 }}
-{{- end }}
+    overridable: false
