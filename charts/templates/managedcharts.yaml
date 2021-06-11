@@ -5,7 +5,7 @@ metadata:
   name: istio-crd
   namespace: fleet-default
 spec:
-  chart: "rancher-istio-crd"
+  chart: "rancher-istio-crd-{{ .Values.cluster.name}}"
   repoName: "rancher-charts"
   releaseName: "rancher-istio-crd"
   version: {{ .Values.istio.version }}
@@ -23,7 +23,7 @@ metadata:
   name: istio
   namespace: fleet-default
 spec:
-  chart: "rancher-istio"
+  chart: "rancher-istio-{{ .Values.cluster.name}}"
   repoName: "rancher-charts"
   releaseName: "rancher-istio"
   version: {{ .Values.istio.version }}
@@ -52,7 +52,7 @@ spec:
 apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
-  name: monitoring-crd
+  name: monitoring-crd-{{ .Values.cluster.name}}
   namespace: fleet-default
 spec:
   chart: "rancher-monitoring-crd"
@@ -73,7 +73,7 @@ metadata:
   name: monitoring
   namespace: fleet-default
 spec:
-  chart: "rancher-monitoring"
+  chart: "rancher-monitoring-{{ .Values.cluster.name}}"
   repoName: "rancher-charts"
   releaseName: "rancher-monitoring"
   version: {{ .Values.monitoring.version }}
