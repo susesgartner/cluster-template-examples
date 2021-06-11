@@ -7,5 +7,5 @@ common:
 image: "ubuntu-20-04-x64"
 region: sfo3
 size: "s-4vcpu-8gb"
-sshPort: 22
+sshPort: "22"
 sshUser: "root"
