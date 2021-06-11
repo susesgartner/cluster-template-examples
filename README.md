@@ -1,6 +1,6 @@
 # RKE2 cluster template
 
-This project contains rke2 cluster template helm chart, which can be applied with values.yaml as configurations to create clusters.
+This project contains rke2 cluster template helm chart for QA testing purposes. This was forked from https://github.com/StrongMonkey/cluster-template-examples
 
 ### How to use
 
@@ -115,7 +115,7 @@ rke:
         foo: bar
 
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
@@ -123,8 +123,8 @@ rke:
   # caCerts: ""
 
   # Specify upgrade options
-  upgradeStrategy: 
-    controlPlaneDrainOptions: 
+  upgradeStrategy:
+    controlPlaneDrainOptions:
       enabled: false
       # deleteEmptyDirData: false
       # disableEviction: false
