@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: cluster-example
+  name: slickwarren-test
 
   # specify cluster labels
   labels: {}
@@ -10,35 +10,156 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: example
+cloudCredentialSecretName: ctw-do
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: ""
+cloudprovider: "digital-ocean"
 
-kubernetesVersion: "v1.21.0-alpha2+rke2r1"
+# enable network policy
+enableNetworkPolicy: false
+
+kubernetesVersion: "v1.21.1-rc2+rke2r1"
 
 # general RKE options
 rke:
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
   # specify cacert of local access endpoint
   # caCerts: ""
 
-# specify user principal ids to be assiged as cluster members
-# clusterMembers: 
-# - principalName: "local://u-z8zl5"
-#   roleTemplateName: "cluster-member"
+
+  # Specify upgrade options
+  upgradeStrategy:
+    controlPlaneDrainOptions:
+      enabled: false
+      # deleteEmptyDirData: false
+      # disableEviction: false
+      # gracePeriod: 0
+      # ignoreErrors: false
+      # skipWaitForDeleteTimeoutSeconds: 0
+      # timeout: 0
+    workerDrainOptions:
+      enabled: false
+      # deleteEmptyDirData: false
+      # disableEviction: false
+      # gracePeriod: 0
+      # ignoreErrors: false
+      # skipWaitForDeleteTimeoutSeconds: 0
+      # timeout: 0
+    workerConcurrency: "10%"
+    controlPlaneConcurrency: "10%"
+
+  # specify CloudCredentialName for etcd snapshot
+  # etcdSnapshotCloudCredentialName: ""
+
+  # specify additional manifest that needs to be applied into cluster
+  # additionalManifest: ""
+
+  # specify private registry of rke2 cluster
+  # registries:
+  #   mirrors: {}
+  #   configs: {}
+
+  # creating etcd snapshot
+  # etcdSnapshotCreate:
+  #  name: ""
+  #  nodeName: ""
+  #  s3:
+  #    endpoint: ""
+  #    endpointCA: ""
+  #    skipSSLVerify: false
+  #    bucket: ""
+  #    region: ""
+  #    cloudCredentialName: ""
+  #    folder: ""
+  # restoring etcd snapshot
+  # etcdSnapshotRestore:
+  #  name: ""
+  #  nodeName: ""
+  #  size: ""
+  #  s3:
+  #    endpoint: ""
+  #    endpointCA: ""
+  #    skipSSLVerify: false
+  #    bucket: ""
+  #    region: ""
+  #    cloudCredentialName: ""
+  #    folder: ""
+
+# specify default PodSecurityPolicyTemplateName
+# defaultPodSecurityPolicyTemplateName: ""
+
+# specify default ClusterRoleForProjectMembers
+# defaultClusterRoleForProjectMembers: ""
 
 # enable monitoring
 monitoring:
-  enabled: false
+  enabled: true
+  # whether to pause deployment
+  # paused: false
   # specify which version to install, can be semver range. If version is empty or is semver range, it will pick up the latest version.
   # version: ""
   # specify cutsom values set
   # values:
   #   foo: bar
+  # Override immutable resources. This could be dangerous.
+  # force: false
+  # take ownership of existing resources
+  # takeOwnership: "false"
+  # set maximum helm release history
+  # maxHistory: 10
+  # set default namespace if resource doesn't have namespace specified
+  defaultNamespace: "cattle-monitoring-system"
+  diff:
+    comparePatches:
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: MutatingWebhookConfiguration
+      name: rancher-monitoring-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: ValidatingWebhookConfiguration
+      name: rancher-monitoring-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+  # set target namespace for monitoring
+  # targetNamespace: "cattle-monitoring-system"
+  # set service account for helm install
+  # serviceAccount: ""
 
-
+# install charts after provisioning cluster
+# charts:
+# - # specify a chart name. This is for displaying purpose
+    # name: "my-chart"
+    # whether to pause deployment
+    # paused: "false"
+    # specify the chart name in repository that you want to install
+    # chartName: "redis"
+    # specify the repo name. This will be the repo that is added through rancher app & marketplace
+    # repoName: "rancher-charts"
+    # specify helm release name
+    # releaseName: "my-release"
+    # specify which version to install, can be semver range. If version is empty or is semver range, it will pick up the latest version.
+    # version: ""
+    # specify install timeouts
+    # timeoutSeconds: 0
+    # specify cutsom values set
+    # values:
+    #   foo: bar
+    # specify diff options for bundles
+    # diff: {}
+    # Override immutable resources. This could be dangerous.
+    # force: false
+    # take ownership of existing resources
+    # takeOwnership: "false"
+    # set maximum helm release history
+    # maxHistory: 10
+    # set default namespace if resource doesn't have namespace specified
+    # defaultNamespace: "default"
+    # set target namespace for monitoring
+    # targetNamespace: "cattle-monitoring-system"
+    # set service account for helm install
+    # serviceAccount: ""
