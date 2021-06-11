@@ -10,7 +10,7 @@ cluster:
 cloudCredentialSecretName: qa-do
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
 cloudprovider: digitalocean
-kubernetesVersion: “v1.21.1-rc2+rke2r1"
+kubernetesVersion: v1.21.1-rc2+rke2r1
 # general RKE options
 rke:
   # enable local auth endpoint
