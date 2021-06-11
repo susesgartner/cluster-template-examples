@@ -1,3 +1,53 @@
+{{- if .Values.istio.enabled }}
+apiVersion: management.cattle.io/v3
+kind: ManagedChart
+metadata:
+  name: istio-crd
+  namespace: fleet-default
+spec:
+  chart: "rancher-istio-crd"
+  repoName: "rancher-charts"
+  releaseName: "rancher-istio-crd"
+  version: {{ .Values.istio.version }}
+  {{- if .Values.istio.values }}
+  values:
+{{ toYaml .Values.istio.values | indent 4 }}
+  {{- end }}
+  namespace: "cattle-istio-system"
+  targets:
+  - clusterName: {{ .Values.cluster.name }}
+---
+apiVersion: management.cattle.io/v3
+kind: ManagedChart
+metadata:
+  name: istio
+  namespace: fleet-default
+spec:
+  chart: "rancher-istio"
+  repoName: "rancher-charts"
+  releaseName: "rancher-istio"
+  version: {{ .Values.istio.version }}
+  {{- if .Values.istio.values }}
+  values:
+{{ toYaml .Values.istio.values | indent 4 }}
+  {{- end }}
+  diff:
+    comparePatches:
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: MutatingWebhookConfiguration
+      name: rancher-istio-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: ValidatingWebhookConfiguration
+      name: rancher-istio-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+  namespace: "cattle-istio-system"
+  targets:
+  - clusterName: {{ .Values.cluster.name }}
+---
+{{- end }}
 {{- if .Values.monitoring.enabled }}
 apiVersion: management.cattle.io/v3
 kind: ManagedChart
@@ -10,7 +60,7 @@ spec:
   releaseName: "rancher-monitoring-crd"
   version: {{ .Values.monitoring.version }}
   {{- if .Values.monitoring.values }}
-  values: 
+  values:
 {{ toYaml .Values.monitoring.values | indent 4 }}
   {{- end }}
   namespace: "cattle-monitoring-system"
@@ -28,7 +78,7 @@ spec:
   releaseName: "rancher-monitoring"
   version: {{ .Values.monitoring.version }}
   {{- if .Values.monitoring.values }}
-  values: 
+  values:
 {{ toYaml .Values.monitoring.values | indent 4 }}
   {{- end }}
   diff:

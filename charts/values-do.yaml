@@ -1,28 +1,20 @@
 cloudprovider: digitalocean
-
 cloudCredentialSecretName: digitalocean
-
 # Specify nodepool options. Can add multiple node groups, specify etcd, controlplane and worker roles.
 nodepools:
 - etcd: true
   controlplane: true
   worker: true
-
   # specify node labels
   labels: {}
-
   # specify node taints
   taints: {}
-
   # specify nodepool size
-  quantity: 1
-
+  quantity: 3
   # Pause node pool
   # paused: false
-
   # specify displayName
-  # displayName: ""
-
+  # displayName: “”
   # specify rolling update mechanism
   # rollingUpdate:
   #   The maximum number of machines that can be unavailable during the update.
@@ -37,7 +29,7 @@ nodepools:
   #   down further, followed by scaling up the new MachineSet, ensuring
   #   that the total number of machines available at all times
   #   during the update is at least 70% of desired machines.
-  #   maxUnavailable: "5"
+  #   maxUnavailable: “5"
   #   The maximum number of machines that can be scheduled above the
   #   desired number of machines.
   #   Value can be an absolute number (ex: 5) or a percentage of
@@ -51,52 +43,36 @@ nodepools:
   #   machines. Once old machines have been killed, new MachineSet can
   #   be scaled up further, ensuring that total number of machines running
   #   at any time during the update is at most 130% of desired machines.
-  #   maxSurge: "1"
-
+  #   maxSurge: “1”
   # specify machineDeployment Labels
   # machineDeploymentLabels: {}
-
   # specify machineDeployment annotations
   # machineDeploymentAnnotations: {}
-
   # specify nodepool name
   name: digitalocean-nodepool-1
-
   # enable backups for droplet
   # backups: true
-
   # Digital Ocean Image
   image: ubuntu-20-04-x64
-
   # enable ipv6 for droplet
   ipv6: false
-
   # enable monitoring for droplet
   monitoring: false
-
   # enable private networking for droplet
   privateNetworking: false
-
   # Digital Ocean region
   region: sfo3
-
   # Digital Ocean size
   size: s-4vcpu-8gb
-
   # File contents for sshKeyContents
-  # sshKeyContents: ""
-
+  # sshKeyContents: “”
   # SSH key fingerprint
-  # sshKeyFingerprint: ""
-
+  # sshKeyFingerprint: “”
   # SSH port
   sshPort: 22
-
   # SSH username
   sshUser: root
-
   # comma-separated list of tags to apply to the Droplet
-  # tags: ""
-
+  # tags: “”
   # File contents for userdata
-  # userdata: ""
+  # userdata: “”
