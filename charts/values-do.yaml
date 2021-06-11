@@ -15,7 +15,7 @@ nodepools:
   taints: {}
 
   # specify nodepool size
-  quantity: 4
+  quantity: 1
 
   # Pause node pool
   # paused: false
