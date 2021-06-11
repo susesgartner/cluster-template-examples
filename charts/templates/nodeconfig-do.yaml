@@ -5,7 +5,6 @@ metadata:
   namespace: fleet-default
 common:
 image: ubuntu-20-04-x64
-ipv6: {{ $nodepool.ipv6 }}
 region: sfo3
 size: s-4vcpu-8gb
 sshPort: 22
