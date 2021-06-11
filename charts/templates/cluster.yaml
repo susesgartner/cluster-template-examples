@@ -9,7 +9,7 @@ metadata:
 spec:
 
   cloudCredentialSecretName: ctw-do
-  enableNetworkPolicy: "false"
+  enableNetworkPolicy: false
   kubernetesVersion: v1.21.1-alpha5+rke2r1
   rancherValues: {}
   rkeConfig:
