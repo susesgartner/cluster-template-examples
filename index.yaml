@@ -5,7 +5,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.236313-07:00"
+    created: "2021-06-17T16:49:49.223519-07:00"
     description: Example cluster template for rke2
     digest: ce0589eccc95b620951d1cc0962c4a9de0411320ed584c12940b3ad432955452
     name: default-template
@@ -17,9 +17,9 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.238036-07:00"
+    created: "2021-06-17T16:49:49.224699-07:00"
     description: hardcoded template for rke2
-    digest: f4bcbc77c7f3f47185dd622492c12cff079d8dc77f0b2aa5fc9e03ffee3648bd
+    digest: e384e644b054b8065dd15e92cf07de86be2e2e3401ee57ba09a7c9b31039857f
     name: hardcoded-template
     urls:
     - hardcoded-template-0.0.2.tgz
@@ -28,7 +28,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.236844-07:00"
+    created: "2021-06-17T16:49:49.224071-07:00"
     description: hardcoded template for rke2
     digest: 28eee87451a11f0f101a4803538bec82e79d4fa8bf79ec9c57fd6005d8394318
     name: hardcoded-template
@@ -40,7 +40,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.243434-07:00"
+    created: "2021-06-17T16:49:49.227312-07:00"
     description: Cluster template for rke2 with v2 Charts as options for install
     digest: 808302f3faa3d17c6a988cf012d81f93b6c25a67d6acca692f5a77b6e71e3bc6
     name: qa-v2charts-template
@@ -51,7 +51,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.242123-07:00"
+    created: "2021-06-17T16:49:49.226366-07:00"
     description: Cluster template for rke2 with v2 Charts as options for install
     digest: 419750072e6a99b0a8319d6e24fbe14f9f3a11a741f6daf1162aa3d97eacc56c
     name: qa-v2charts-template
@@ -62,11 +62,11 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-06-17T16:47:48.239625-07:00"
+    created: "2021-06-17T16:49:49.225519-07:00"
     description: Cluster template for rke2 with v2 Charts as options for install
     digest: e81dbece22781811f23c0195931b66a284fbd0fcbf04eb787030f106e2aeea67
     name: qa-v2charts-template
     urls:
     - qa-v2charts-template-0.0.1.tgz
     version: 0.0.1
-generated: "2021-06-17T16:47:48.235284-07:00"
+generated: "2021-06-17T16:49:49.222685-07:00"
