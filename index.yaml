@@ -35,18 +35,6 @@ entries:
     urls:
     - hardcoded-template-0.0.1.tgz
     version: 0.0.1
-  qa-registry-template:
-  - annotations:
-      catalog.cattle.io/namespace: fleet-default
-      catalog.cattle.io/type: cluster-template
-    apiVersion: v1
-    created: "2021-06-18T14:15:14.85244-07:00"
-    description: Cluster template with registry option enabled
-    digest: 6161c3d7da2b281622ecf2353b27ccd96137891a8159d2b054d26da6fca90b91
-    name: qa-registry-template
-    urls:
-    - qa-registry-template-0.0.1.tgz
-    version: 0.0.1
   qa-v2charts-template:
   - annotations:
       catalog.cattle.io/namespace: fleet-default
