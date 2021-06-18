@@ -21,13 +21,13 @@ spec:
   # specify rancher helm chart values deployed into downstream cluster
   # rancherValues: {}
   rkeConfig:
-    {{- if .Values.registry.name }}
+    {{- if .Values.registry }}
     registries:
       configs:
         {{ .Values.registry.name }}:
           caBundle: {{ .Values.registry.caBundle }}
           insecureskipVerify: {{ .Values.registry.insecure }}
-          {{- if .Values.registry.secret.name }}
+          {{- if .Values.registry.secret }}
           authConfigSecretName: {{ .Values.registry.secret.name }}
             caBundle: {{ .Values.registry.secret.caBundle }}
             insecureSkipVerify: {{ .Values.registry.secret.insecure }}
