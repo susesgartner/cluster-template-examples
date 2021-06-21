@@ -4,4 +4,4 @@ annotations:
 apiVersion: v1
 description: Cluster template with registry option enabled
 name: qa-registry-template
-version: 0.0.1
+version: 0.0.2

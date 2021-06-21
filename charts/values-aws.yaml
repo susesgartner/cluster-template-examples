@@ -72,16 +72,16 @@ nodepools:
   deviceName: "/dev/sda1"
 
   # Encrypt the EBS volume using the AWS Managed CMK
-  # encryptEbsVolume: false
-  
+  encryptEbsVolume: false
+
   # Optional endpoint URL (hostname only or fully qualified)
-  # endpoint: ""
+  endpoint: ""
 
   # AWS IAM Instance Profile
-  # iamInstanceProfile: ""
+  iamInstanceProfile: ""
 
   # Disable SSL when sending requests
-  # insecureTransport: false
+  insecureTransport: false
 
   # AWS instance type
   instanceType: t3a.medium
@@ -150,4 +150,3 @@ nodepools:
 
   # AWS zone for instance (i.e. a,b,c,d,e)
   zone: a
-
