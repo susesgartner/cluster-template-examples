@@ -219,22 +219,22 @@ questions:
   group: "Nodepools"
 - variable: nodepool.diskSize
   label: "Disk Size"
-  default: 20480
-  type: int
+  default: "20480"
+  type: string
   description: "vSphere size of disk for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
 - variable: nodepool.memorySize
   label: "Memory Size"
-  default: 2048
-  type: int
+  default: "2048"
+  type: string
   description: "vSphere size of memory for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
 - variable: nodepool.network
   label: "Network"
   default: ""
-  type: string
+  type: array
   description: "vSphere network where the virtual machine will be attached"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
@@ -247,8 +247,8 @@ questions:
   group: "Nodepools"
 - variable: nodepool.sshPort
   label: "SSH Port"
-  default: 22
-  type: int
+  default: "22"
+  type: string
   description: "If using a non-B2D image you can specify the ssh port"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
