@@ -1,0 +1,35 @@
+apiVersion: provisioning.cattle.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Values.cluster.name }}
+  namespace: fleet-default
+spec:
+  {{- if .Values.cloudCredentialSecretName }}
+  cloudCredentialSecretName: {{ .Values.cloudCredentialSecretName }}
+  {{- end }}
+  kubernetesVersion: v1.21.0-alpha2+rke2r1
+  rkeConfig:
+    machinePools:
+    {{- if .Values.cluster }}
+    {{ $nodepool := .Values.cluster }}
+    - controlPlaneRole: true
+      etcdRole: true
+      workerRole: true
+      quantity: 1
+      name: {{ $nodepool.name }}
+      machineConfigRef:
+        kind: DigitaloceanConfig
+        name: {{ $nodepool.name }}
+    {{- end }}
+    controlPlaneConfig:
+      cni: calico
+    upgradeStrategy:
+      controlPlaneDrainOptions:
+        enabled: false
+      workerDrainOptions:
+        enabled: false
+      workerConcurrency: "10%"
+      controlPlaneConcurrency: "10%"
+  agentEnvVars:
+    - name: "hardcoded"
+      value: "true"

@@ -1,0 +1,7 @@
+annotations:
+  catalog.cattle.io/namespace: fleet-default
+  catalog.cattle.io/type: cluster-template
+apiVersion: v1
+description: hardcoded template for rke2
+name: hardcoded-template
+version: 0.0.2
