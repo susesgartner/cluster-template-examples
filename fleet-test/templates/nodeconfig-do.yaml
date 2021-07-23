@@ -4,7 +4,7 @@ apiVersion: rke-machine-config.cattle.io/v1
 kind: DigitaloceanConfig
 metadata:
   name: {{ $nodepool.name }}
-  namespace: fleet-default
+  namespace: fleet-local
 image: ubuntu-20-04-x64
 region: sfo3
 size: s-2vcpu-4gb
