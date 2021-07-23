@@ -2,7 +2,7 @@
 
 # The namespace this chart will be installed and restricted to,
 # if not specified the chart will be installed to "default"
-namespace: fleet-helm-example
+namespace: fleet-local
 
 # Custom helm options
 helm:
@@ -29,4 +29,9 @@ helm:
 
   # Custom values that will be passed as values.yaml to the installation
   values:
-    replicas: 2
+    cluster:
+      # specify cluster name
+      name: qa-hardcoded-0
+
+    # specify cloud credential secret name, do not need to be provided if using custom driver
+    cloudCredentialSecretName: qa-do
