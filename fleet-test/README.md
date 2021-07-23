@@ -5,7 +5,7 @@ Helm chart that is hard coded to use Digital Ocean. User can select name and sec
 ### how to use
 
 ```bash
-helm install --namespace fleet-local --value ./your-values.yaml my-cluster ./charts
+helm install --namespace fleet-default --value ./your-values.yaml my-cluster ./charts
 ```
 
 General cluster options are available through [values.yaml](./values.yaml)
