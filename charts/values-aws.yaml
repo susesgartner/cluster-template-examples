@@ -72,16 +72,16 @@ nodepools:
   deviceName: "/dev/sda1"
 
   # Encrypt the EBS volume using the AWS Managed CMK
-  # encryptEbsVolume: false
+  encryptEbsVolume: false
   
   # Optional endpoint URL (hostname only or fully qualified)
-  # endpoint: ""
+  endpoint: ""
 
   # AWS IAM Instance Profile
-  # iamInstanceProfile: ""
+  iamInstanceProfile: ""
 
   # Disable SSL when sending requests
-  # insecureTransport: false
+  insecureTransport: false
 
   # AWS instance type
   instanceType: t3a.medium
@@ -95,28 +95,28 @@ nodepools:
   # securityGroups: []
 
   # AWS keypair to use
-  # keypairName: ""
+  keypairName: ""
 
   # Skip adding default rules to security groups
-  # securityGroupReadonly: false
+  securityGroupReadonly: false
 
   # File contents for sshKeyContents
-  # sshKeyContents: ""
+  sshKeyContents: ""
 
   # AWS VPC subnet id
-  # subnetId: ""
+  subnetId: ""
 
   # Set this flag to enable CloudWatch monitoring
-  # monitoring; false
+  monitoring: false
 
   # Make the specified port number accessible from the Internet
   # openPort: ["8080", "8443"]
 
   # Only use a private IP address
-  # privateAddressOnly: false
+  privateAddressOnly: false
 
   # Set this flag to request spot instance
-  # requestSpotInstance: false
+  requestSpotInstance: false
 
   # AWS Tags (e.g. key1,value1,key2,value2)
   # tags: "foo,bar"
@@ -140,13 +140,13 @@ nodepools:
   # vpcId: ""
 
   # Create an EBS optimized instance
-  # useEbsOptimizedInstance: false
+  useEbsOptimizedInstance: false
 
   # Force the usage of private IP address
-  # usePrivateAddress: false
+  usePrivateAddress: false
 
   # File contents for userdata
-  # userdata: ""
+  userdata: ""
 
   # AWS zone for instance (i.e. a,b,c,d,e)
   zone: a
