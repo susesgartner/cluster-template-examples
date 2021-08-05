@@ -7,10 +7,9 @@ questions:
   type: string
   group: "General"
 - variable: cloudCredentialSecretName
-  default:
   description: "CloudCredentialName for provisioning cluster"
   label: "CloudCredential Name"
-  type: string
+  type: secret
   group: "General"
 - variable: cloudprovider
   default: custom
@@ -48,13 +47,13 @@ questions:
   show_subquestion_if: true
   subquestions:
   - variable: rke.localClusterAuthEndpoint.fqdn
-    default:
+    default: 
     description: "Local auth access endpoint FQDN"
     label: "Auth Endpoint FQDN"
     type: hostname
     group: "Auth Access Endpoint"
   - variable: rke.localClusterAuthEndpoint.caCerts
-    default:
+    default: 
     label: "Auth Endpoint Cacerts"
     description: "Local auth access endpoint CACerts"
     type: multiline
@@ -68,45 +67,50 @@ questions:
   show_subquestion_if: true
   subquestions:
   - variable: monitoring.version
-    default:
+    default: 
     label: "Monitoring Version"
     description: "Choose chart version of monitoring. If empty latest version will be installed"
     type: string
     group: "Monitoring"
   - variable: monitoring.values
-    default:
+    default: 
     label: "Monitoring Values"
     description: "Custom monitoring chart values"
     type: multiline
     group: "Monitoring"
 - variable: nodepool.name
-  default:
+  default: 
   description: "Specify nodepool name"
   type: string
   label: "Nodepool name"
   required: true
+  show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean
   group: "Nodepools"
 - variable: nodepool.quantity
   default: 1
   description: "Specify node count"
   type: int
   required: true
+  show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean
   label: "Node count"
   group: "Nodepools"
 - variable: nodepool.etcd
   default: true
   label: etcd
   type: boolean
+  show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean
   group: "Nodepools"
 - variable: nodepool.worker
   default: true
   label: worker
   type: boolean
+  show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean
   group: "Nodepools"
 - variable: nodepool.controlplane
   label: controlplane
   default: true
   type: boolean
+  show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean
   group: "Nodepools"
 # EC2
 - variable: nodepool.region
@@ -171,7 +175,7 @@ questions:
   group: "Nodepools"
 - variable: nodepool.createSecurityGroup
   label: "Create security group"
-  default:
+  default: true
   type: boolean
   description: "Whether to create `rancher-node` security group. If false, can provide with existing security group"
   show_if: cloudprovider=amazonec2
@@ -180,7 +184,7 @@ questions:
   subquestions:
   - variable: nodepool.securityGroups
     label: "Security groups"
-    default:
+    default: 
     type: string
     description: "Using existing security groups"
     group: "Nodepools"
@@ -219,15 +223,15 @@ questions:
   group: "Nodepools"
 - variable: nodepool.diskSize
   label: "Disk Size"
-  default: 20480
-  type: int
+  default: "20480"
+  type: string
   description: "vSphere size of disk for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
 - variable: nodepool.memorySize
   label: "Memory Size"
-  default: 2048
-  type: int
+  default: "2048"
+  type: string
   description: "vSphere size of memory for docker VM (in MB)"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
@@ -247,8 +251,8 @@ questions:
   group: "Nodepools"
 - variable: nodepool.sshPort
   label: "SSH Port"
-  default: 22
-  type: int
+  default: "22"
+  type: string
   description: "If using a non-B2D image you can specify the ssh port"
   show_if: cloudprovider=vsphere
   group: "Nodepools"
@@ -265,7 +269,7 @@ questions:
   type: enum
   options:
   - dhcp
-  - fixed
+  - fixed 
   - transient
   - fixedAllocated
   description: "'vSphere vApp IP allocation policy. Supported values are: dhcp, fixed, transient and fixedAllocated'"
@@ -333,7 +337,7 @@ questions:
   group: "Nodepools"
 - variable: nodepool.userdata
   label: "Userdata"
-  default:
+  default: 
   type: multiline
   description: "File contents for userdata"
   show_if: cloudprovider=digitalocean
@@ -341,7 +345,7 @@ questions:
 - variable: nodepool.sshPort
   label: "SSH Port"
   default: 22
-  type: int
+  type: string
   description: "SSH port"
   show_if: cloudprovider=digitalocean
   group: "Nodepools"
@@ -351,4 +355,150 @@ questions:
   type: string
   description: "SSH username"
   show_if: cloudprovider=digitalocean
+  group: "Nodepools"
+# Azure
+- variable: nodepool.availabilitySet
+  label: "Availability Set"
+  default: docker-machine
+  type: string
+  description: "Azure Availability Set to place the virtual machine into"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.diskSize
+  label: "Disk Size"
+  default: ""
+  type: string
+  description: "Disk size if using managed disk(Gib)"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.dns
+  label: "DNS"
+  default: ""
+  type: string
+  description: "A unique DNS label for the public IP adddress"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.environment
+  label: "Environment"
+  default: AzurePublicCloud
+  type: enum
+  options:
+  - AzurePublicCloud
+  - AzureGermanCloud
+  - AzureChinaCloud
+  - AzureUSGovernmentCloud
+  description: "Azure environment"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.faultDomainCount
+  label: "Fault Domain Count"
+  default: ""
+  type: string
+  description: "Fault domain count to use for availability set"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.image
+  label: "Image"
+  default: canonical:UbuntuServer:18.04-LTS:latest
+  type: string
+  description: "Azure virtual machine OS image"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.location
+  label: "Location"
+  default: westus
+  type: string
+  description: "Azure region to create the virtual machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.managedDisks
+  label: "Managed Disks"
+  default: false
+  type: boolean
+  description: "Configures VM and availability set for managed disks"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.noPublicIp
+  label: "No Public IP"
+  default: false
+  type: boolean
+  description: "Do not create a public IP address for the machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.privateIpAddress
+  label: "Private IP Address"
+  default: ""
+  type: string
+  description: "Specify a static private IP address for the machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.resourceGroup
+  label: "Resource Group"
+  default: docker-machine
+  type: string
+  description: "Azure Resource Group name (will be created if missing)"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.size
+  label: "Size"
+  default: "Standard_D2_v2"
+  type: string
+  description: "Size for Azure Virtual Machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.sshUser
+  label: "SSH Username"
+  default: docker-user
+  type: string
+  description: "Username for SSH login"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.staticPublicIp
+  label: "Static Public IP"
+  default: false
+  type: boolean
+  description: "Assign a static public IP address to the machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.storageType
+  label: "Storage Account"
+  default: "Standard_LRS"
+  type: string
+  description: "Type of Storage Account to host the OS Disk for the machine"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.subnet
+  label: "Subnet"
+  default: docker-machine
+  type: string
+  description: "Azure Subnet Name to be used within the Virtual Network"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.subnetPrefix
+  label: "Subnet Prefix"
+  default: "192.168.0.0/16"
+  type: string
+  description: "Private CIDR block to be used for the new subnet, should comply RFC 1918"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.updateDomainCount
+  label: "Update Domain Count"
+  default: ""
+  type: string
+  description: "Update domain count to use for availability set"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.usePrivateIp
+  label: "Use Private IP"
+  default: false
+  type: boolean
+  description: "Azure Subnet Name to be used within the Virtual Network"
+  show_if: cloudprovider=azure
+  group: "Nodepools"
+- variable: nodepool.vnet
+  label: "Vnet"
+  default: "docker-machine-vnet"
+  type: string
+  description: "Azure Virtual Network name to connect the virtual machine (in [resourcegroup:]name format)"
+  show_if: cloudprovider=azure
   group: "Nodepools"
