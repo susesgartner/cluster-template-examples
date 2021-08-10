@@ -5,7 +5,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-08-05T12:59:26.314291-07:00"
+    created: "2021-08-10T10:19:57.751575-07:00"
     description: Cluster template for rke2
     digest: 9285680d8d573f7c31521c293fe57f9836d27b9e79a731a6698286088c288d55
     name: cluster-template
@@ -16,11 +16,46 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-08-05T12:59:26.312171-07:00"
+    created: "2021-08-10T10:19:57.750334-07:00"
     description: Cluster template for rke2
-    digest: 86acbcf9360fc2ec56a2a33363ee3406fda214074065c87aebafe5c158b2d795
+    digest: 9fad60c3f5928a94a39fd0df1169ac76ac39d309a582b3dd51bf698f48ed3bef
     name: cluster-template
     urls:
     - cluster-template-0.0.1.tgz
     version: 0.0.1
-generated: "2021-08-05T12:59:26.311391-07:00"
+  default-template:
+  - annotations:
+      catalog.cattle.io/namespace: fleet-default
+      catalog.cattle.io/type: cluster-template
+    apiVersion: v1
+    created: "2021-08-10T10:19:57.755085-07:00"
+    description: Example cluster template for rke2
+    digest: e5c689f1fc4f7cba96d03d743d0347b560159819cba4815997a6a0adad76bee3
+    name: default-template
+    urls:
+    - default-template-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      catalog.cattle.io/namespace: fleet-default
+      catalog.cattle.io/type: cluster-template
+    apiVersion: v1
+    created: "2021-08-10T10:19:57.754293-07:00"
+    description: Example cluster template for rke2
+    digest: ce0589eccc95b620951d1cc0962c4a9de0411320ed584c12940b3ad432955452
+    name: default-template
+    urls:
+    - default-template-0.0.1.tgz
+    version: 0.0.1
+  hardcoded-template:
+  - annotations:
+      catalog.cattle.io/namespace: fleet-default
+      catalog.cattle.io/type: cluster-template
+    apiVersion: v1
+    created: "2021-08-10T10:19:57.755446-07:00"
+    description: hardcoded template for rke2
+    digest: 0a40033e327f8ab7bde1eca231c15c29ec08465c45695a4f6fa0dc89618b34f7
+    name: hardcoded-template
+    urls:
+    - hardcoded-template-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-08-10T10:19:57.748942-07:00"
