@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: cluster-example
+  name: qa-templatex-rke2
 
   # specify cluster labels
   labels: {}
@@ -10,10 +10,10 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: example
+cloudCredentialSecretName: qa-do
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: ""
+cloudprovider: "digitalocean"
 
 # general RKE options
 rke:
