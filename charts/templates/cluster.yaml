@@ -15,7 +15,9 @@ spec:
   {{- if .Values.cloudCredentialSecretName }}
   cloudCredentialSecretName: {{ .Values.cloudCredentialSecretName }}
   {{- end }}
-  kubernetesVersion: v1.22.0
+  {{- if .Values.kubernetesVersion }}
+  kubeernetesVersion: {{ .Values.kubernetesVersion }}
+  {{- end }}
   # enable network policy
   enableNetworkPolicy: true
   # specify rancher helm chart values deployed into downstream cluster
