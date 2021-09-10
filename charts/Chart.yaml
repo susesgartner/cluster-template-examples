@@ -2,6 +2,6 @@ annotations:
   catalog.cattle.io/namespace: fleet-default
   catalog.cattle.io/type: cluster-template
 apiVersion: v1
-description: Cluster template with registry option enabled
-name: qa-registry-template
-version: 0.0.2
+description: Cluster template with good ec2 values
+name: qa-template
+version: 0.0.3
