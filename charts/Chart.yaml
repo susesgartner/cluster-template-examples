@@ -1,7 +1,7 @@
-apiVersion: v1
-name: default-template
-description: Example cluster template for rke2
-version: 0.0.1
 annotations:
-  catalog.cattle.io/type: cluster-template
   catalog.cattle.io/namespace: fleet-default
+  catalog.cattle.io/type: cluster-template
+apiVersion: v1
+description: Example cluster template for rke2 - updated questions
+name: default-template
+version: 0.0.2
