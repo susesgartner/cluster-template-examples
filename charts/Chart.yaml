@@ -1,7 +1,7 @@
-annotations:
-  catalog.cattle.io/namespace: fleet-default
-  catalog.cattle.io/type: cluster-template
 apiVersion: v1
-description: Cluster template with good ec2 values
-name: qa-template
+name: cluster-template
+description: Cluster template for rke2
 version: 0.0.1
+annotations:
+  catalog.cattle.io/type: cluster-template
+  catalog.cattle.io/namespace: fleet-default

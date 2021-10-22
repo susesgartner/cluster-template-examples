@@ -26,7 +26,10 @@ location: {{ $nodepool.location }}
 managedDisks: {{ $nodepool.managedDisks }}
 noPublicIp: {{ $nodepool.noPublicIp }}
 {{- if $nodepool.openPort}}
-openPort: {{ $nodepool.openPort }}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
 {{- end }}
 privateIpAddress: {{ $nodepool.privateIpAddress }}
 resourceGroup: {{ $nodepool.resourceGroup }}
@@ -70,7 +73,10 @@ location: {{ $nodepool.location }}
 managedDisks: {{ $nodepool.managedDisks }}
 noPublicIp: {{ $nodepool.noPublicIp }}
 {{- if $nodepool.openPort}}
-openPort: {{ $nodepool.openPort }}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
 {{- end }}
 privateIpAddress: {{ $nodepool.privateIpAddress }}
 resourceGroup: {{ $nodepool.resourceGroup }}
