@@ -5,7 +5,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-10-22T09:33:39.167936-07:00"
+    created: "2021-10-22T09:45:04.894238-07:00"
     description: hardcoded template for rke2
     digest: 2d2ba3f5dd89d78bbb1939067d6bf28ff800c79df59eec6158b065ad93247876
     name: hardcoded-template
@@ -16,7 +16,7 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-10-22T09:33:39.167319-07:00"
+    created: "2021-10-22T09:45:04.893156-07:00"
     description: hardcoded template for rke2
     digest: c7852181f7611149efb8bcfd116412987543fcd3a27a3e3111df95e64b648e9c
     name: hardcoded-template
@@ -28,11 +28,11 @@ entries:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
     apiVersion: v1
-    created: "2021-10-22T09:33:39.197532-07:00"
+    created: "2021-10-22T09:45:04.923832-07:00"
     description: Cluster template with good ec2 values
-    digest: 8457c4e6de606259b825f8c5800ea04773d736af61ddedc0286b8a7f06fb325b
+    digest: d9f6a30080d32c4201000ec36ae0ac9260ae18058733a85588366e3fbe6ee06c
     name: qa-template
     urls:
     - qa-template-0.0.1.tgz
     version: 0.0.1
-generated: "2021-10-22T09:33:39.166546-07:00"
+generated: "2021-10-22T09:45:04.892512-07:00"

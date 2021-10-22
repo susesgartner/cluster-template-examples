@@ -10,7 +10,7 @@ questions:
   default:
   description: "CloudCredentialName for provisioning cluster"
   label: "CloudCredential Name"
-  type: secret
+  type: string
   group: "General"
 - variable: cloudprovider
   default: custom
