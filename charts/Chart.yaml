@@ -4,4 +4,4 @@ annotations:
 apiVersion: v1
 description: Cluster template with good ec2 values
 name: qa-template
-version: 0.0.3
+version: 0.0.1

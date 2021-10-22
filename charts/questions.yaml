@@ -10,7 +10,7 @@ questions:
   default:
   description: "CloudCredentialName for provisioning cluster"
   label: "CloudCredential Name"
-  type: string
+  type: secret
   group: "General"
 - variable: cloudprovider
   default: custom
@@ -26,18 +26,14 @@ questions:
   - custom
   group: "General"
 - variable: kubernetesVersion
-  default: v1.21.1-alpha5+rke2r1
+  default: v1.21.5+rke2r2
   description: "Specify Kubernetes version"
   label: "Kubernetes Version"
   type: enum
   required: true
   options:
-  - v1.18.17+rke2r1
-  - v1.19.9+rke2r1
-  - v1.20.5+rke2r1
-  - v1.20.6+rke2r1
-  - v1.21.1-alpha4+rke2r1
-  - v1.21.1-alpha5+rke2r1
+  - v1.21.4+rke2r2
+  - v1.21.5+rke2r2
   group: "General"
 - variable: rke.localClusterAuthEndpoint.enabled
   default: false

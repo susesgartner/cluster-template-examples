@@ -4,4 +4,4 @@ cluster:
   name: qa-hardcoded-0
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: qa-do
+cloudCredentialSecretName: cattle-global-data:qa-do
