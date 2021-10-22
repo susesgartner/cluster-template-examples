@@ -1,16 +1,16 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: registry-cluster-xyz
+  name: registry-cluster-qa
   # specify cluster labels
   labels: {}
   # specify cluster annotations
   annotations: {}
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: qa-ec2
+# cloudCredentialSecretName: qa-ec2
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: amazonec2
-kubernetesVersion: v1.21.4-rke2r1
+# cloudprovider: amazonec2
+# kubernetesVersion: v1.21.4-rke2r1
 # general RKE options
 rke:
   # enable local auth endpoint
