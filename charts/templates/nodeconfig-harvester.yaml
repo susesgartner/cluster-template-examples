@@ -1,0 +1,50 @@
+{{- if eq .Values.cloudprovider "harvester" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: provisioning.cattle.io/v1
+kind: HarvesterConfig
+metadata:
+  name: {{ $nodepool.name }}
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+diskSize: {{ $nodepool.diskSize }}
+diskBus: {{ $nodepool.diskBus }}
+cpuCount: {{ $nodepool.cpuCount }}
+memorySize: {{ $nodepool.memorySize }}
+networkName: {{ $nodepool.networkName }}
+imageName: {{ $nodepool.imageName }}
+vmNamespace: {{ $nodepool.vmNamespace }}
+sshUser: {{ $nodepool.sshUser }}
+----
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: provisioning.cattle.io/v1
+kind: HarvesterConfig
+metadata:
+  name: {{ $nodepool.name }}
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+diskSize: {{ $nodepool.diskSize }}
+diskBus: {{ $nodepool.diskBus }}
+cpuCount: {{ $nodepool.cpuCount }}
+memorySize: {{ $nodepool.memorySize }}
+networkName: {{ $nodepool.networkName }}
+imageName: {{ $nodepool.imageName }}
+vmNamespace: {{ $nodepool.vmNamespace }}
+sshUser: {{ $nodepool.sshUser }}
+{{- end }}
+{{- end }}

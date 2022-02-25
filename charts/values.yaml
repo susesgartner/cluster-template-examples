@@ -13,14 +13,36 @@ cluster:
 cloudCredentialSecretName: ""
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: "digitalocean"
+cloudprovider: "harvester"
 
 kubernetesVersion: ""
+nodepools:
+- etcd: true
+  controlplane: true
+  worker: true
 
+  # specify node labels
+  labels: {}
+
+  # specify node taints
+  taints: {}
+
+  # specify nodepool size
+  quantity: 1
+
+  name: harvester-nodepool-1
+  diskSize: 40
+  diskBus: virtio
+  cpuCount: 4
+  memorySize: 8
+  networkName: default/ctw-network-1
+  imageName: default/image-rpj98
+  vmNamespace: default
+  sshUser: ubuntu
 # general RKE options
 rke:
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
@@ -28,7 +50,7 @@ rke:
   # caCerts: ""
 
 # specify user principal ids to be assiged as cluster members
-# clusterMembers: 
+# clusterMembers:
 # - principalName: "local://u-z8zl5"
 #   roleTemplateName: "cluster-member"
 
@@ -40,5 +62,3 @@ monitoring:
   # specify cutsom values set
   # values:
   #   foo: bar
-
-
