@@ -117,7 +117,7 @@ questions:
 # EC2
 - variable: nodepools.0.region
   label: "Region"
-  default: us-west-2
+  default: "us-west-2"
   type: string
   description: "AWS EC2 region"
   required: true

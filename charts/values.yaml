@@ -13,9 +13,9 @@ cluster:
 cloudCredentialSecretName: ""
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: "digitalocean"
+cloudprovider: "amazonec2"
 
-kubernetesVersion: ""
+kubernetesVersion: "1.27.8"
 
 # general RKE options
 rke:

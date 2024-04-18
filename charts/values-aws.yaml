@@ -4,24 +4,14 @@ cloudCredentialSecretName: amazonec2
 
 # Specify nodepool options. Can add multiple node groups, specify etcd, controlplane and worker roles.
 nodepools:
-- etcd: true
+- name: "nodepoolone"
+  etcd: true
   controlplane: true
   worker: true
-
-  # specify node labels
-  labels: {}
-
-  # specify node taints
-  taints: {}
 
   # specify nodepool size
   quantity: 1
 
-  # Pause node pool
-  paused: false
-
-  # specify displayName
-  # displayName: ""
 
   # specify rolling update mechanism
   # rollingUpdate:
@@ -58,9 +48,6 @@ nodepools:
 
   # specify machineDeployment annotations
   # machineDeploymentAnnotations: {}
-
-  # specify nodepool name
-  name: ec2-nodepool-1
 
   # AWS machine image
   # ami: ""
@@ -125,7 +112,7 @@ nodepools:
   retries: 5
 
   # AWS root disk size (in GB)
-  rootSize: 50
+  rootSize: 50g
 
   # AWS spot instance bid price (in dollar)
   spotPrice: 0.5
