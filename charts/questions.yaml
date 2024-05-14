@@ -81,7 +81,7 @@ questions:
     type: multiline
     group: "Monitoring"
 - variable: nodepools.0.name
-  default:
+  default: "nodePoolone"
   description: "Specify nodepool name"
   type: string
   label: "Nodepool name"
@@ -89,7 +89,7 @@ questions:
   show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
   group: "Nodepools"
 - variable: nodepools.0.quantity
-  default: 1
+  default: 3
   description: "Specify node count"
   type: int
   required: true
@@ -117,7 +117,7 @@ questions:
 # EC2
 - variable: nodepools.0.region
   label: "Region"
-  default: "us-west-2"
+  default: "us-east-2"
   type: string
   description: "AWS EC2 region"
   required: true
@@ -141,14 +141,14 @@ questions:
   group: "Nodepools"
 - variable: nodepools.0.rootSize
   label: "Root Disk Size"
-  default: "50g"
+  default: '"100"'
   type: string
   description: "AWS EC2 root disk size"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
 - variable: nodepools.0.vpcId
   label: "VPC/SUBNET"
-  default: ""
+  default: "vpc-bfccf4d7"
   type: string
   description: "AWS EC2 vpc ID"
   required: true
@@ -163,7 +163,7 @@ questions:
   group: "Nodepools"
 - variable: nodepools.0.ami
   label: "AMI ID"
-  default: ""
+  default: "ami-0e6577a75723c81f8"
   type: string
   description: "AWS EC2 AMI ID"
   show_if: cloudprovider=amazonec2
@@ -182,14 +182,6 @@ questions:
   description: "Whether to create `rancher-node` security group. If false, can provide with existing security group"
   show_if: cloudprovider=amazonec2
   group: "Nodepools"
-  show_subquestion_if: false
-  subquestions:
-  - variable: nodepools.0.securityGroups
-    label: "Security groups"
-    default:
-    type: string
-    description: "Using existing security groups"
-    group: "Nodepools"
 # vsphere
 - variable: nodepools.0.vcenter
   label: "vSphere IP/hostname"
