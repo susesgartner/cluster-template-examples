@@ -15,7 +15,7 @@ cloudCredentialSecretName: ""
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
 cloudprovider: "amazonec2"
 
-kubernetesVersion: "1.27.8"
+kubernetesVersion: "v1.26.7+rke2r1"
 
 # general RKE options
 rke:
@@ -40,3 +40,23 @@ monitoring:
   # specify cutsom values set
   # values:
   #   foo: bar
+#Default nodepools
+nodepools:
+  '0':
+    name: nodepool1
+    quantity: 3
+    etcd: true
+    worker: true
+    controlplane: true
+    ami: ami-0e6577a75723c81f8
+    backups: false
+    ipv6: false
+    monitoring: false
+    privateNetworking: false
+    region: us-east-2
+    userdata: null
+    sshPort: 22
+    sshUser: ubuntu
+    zone: a
+    instanceType: t3a.medium
+    rootSize: '"100"'
