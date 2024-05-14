@@ -40,6 +40,7 @@ monitoring:
   # specify cutsom values set
   # values:
   #   foo: bar
+#Default nodepools
 nodepools: 
   0:
     name: nodepoolone

@@ -10,7 +10,7 @@ nodepools:
   worker: true
 
   # specify nodepool size
-  quantity: 1
+  quantity: 3
 
 
   # specify rolling update mechanism
@@ -112,7 +112,7 @@ nodepools:
   retries: 5
 
   # AWS root disk size (in GB)
-  rootSize: 50g
+  rootSize: 100g
 
   # AWS spot instance bid price (in dollar)
   spotPrice: 0.5
