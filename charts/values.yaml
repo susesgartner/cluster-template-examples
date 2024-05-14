@@ -40,26 +40,3 @@ monitoring:
   # specify cutsom values set
   # values:
   #   foo: bar
-#Default nodepools
-nodepools: 
-  0:
-    name: nodepoolone
-    quantity: 3
-    etcd: true
-    worker: true
-    controlplane: true
-    ami: ami-0e6577a75723c81f8
-    backups: false
-    ipv6: false
-    monitoring: false
-    privateNetworking: false
-    region: us-east-2
-    userdata: null
-    sshPort: 22
-    sshUser: ubuntu
-    zone: a
-    instanceType: t3a.medium
-    rootSize: '"100"'
-    vpcId: vpc-bfccf4d7
-    iamInstanceProfile: ''
-    createSecurityGroup: true

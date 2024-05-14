@@ -50,7 +50,7 @@ nodepools:
   # machineDeploymentAnnotations: {}
 
   # AWS machine image
-  # ami: ""
+  ami: "ami-0e6577a75723c81f8"
 
   # AWS spot instance duration in minutes (60, 120, 180, 240, 300, or 360)
   # blockDurationMinutes: 0
@@ -91,7 +91,8 @@ nodepools:
   sshKeyContents: ""
 
   # AWS VPC subnet id
-  subnetId: ""
+  #For QA use only this is not a production vpc ID
+  subnetId: "vpc-bfccf4d7"
 
   # Set this flag to enable CloudWatch monitoring
   monitoring: false
