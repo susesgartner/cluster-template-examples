@@ -41,7 +41,7 @@ monitoring:
   # values:
   #   foo: bar
 nodepools: 
-    '0':
+  0:
     name: nodepoolone
     quantity: 3
     etcd: true
