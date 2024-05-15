@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: 
+  name: template-cluster
 
   # specify cluster labels
   labels: {}
@@ -154,7 +154,7 @@ nodepools:
     rootSize: '"100"'
 
     # AWS spot instance bid price (in dollar)
-    spotPrice: 0.5
+    spotPrice: "0.5"
 
     # Set the name of the ssh user
     sshUser: ubuntu
