@@ -88,13 +88,13 @@ nodepools:
     # machineDeploymentAnnotations: {}
 
     # AWS machine image
-    ami: "ami-0e6577a75723c81f8"
+    ami: ami-0e6577a75723c81f8
 
     # AWS spot instance duration in minutes (60, 120, 180, 240, 300, or 360)
     blockDurationMinutes: 0
 
     # AWS root device name
-    deviceName: "/dev/sda1"
+    deviceName: /dev/sda1
 
     # Encrypt the EBS volume using the AWS Managed CMK
     encryptEbsVolume: false
@@ -148,13 +148,13 @@ nodepools:
     # tags: "foo,bar"
 
     # Set retry count for recoverable failures (use -1 to disable)
-    retries: 5
+    retries: '"5"'
 
     # AWS root disk size (in GB)
     rootSize: '"100"'
 
     # AWS spot instance bid price (in dollar)
-    spotPrice: "0.5"
+    spotPrice: '"100"'
 
     # Set the name of the ssh user
     sshUser: ubuntu
