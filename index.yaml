@@ -43,7 +43,7 @@ entries:
     apiVersion: v1
     created: "2023-08-25T15:54:51.604663-08:00"
     description: Cluster template for rke2 v6
-    digest: 3d5637f023e0470103dfd631abef08ddaff9c6b3965df4a52c65cc493fe60f40
+    digest: 12130925a434d178fca45f899617549992de73c69faeb91834e34f2414b53acf
     name: cluster-template6
     urls:
     - cluster-template-0.0.6.tgz
