@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: template-rke2
+  name: template-cluster
 
   # specify cluster labels
   labels: {}
@@ -54,7 +54,6 @@ nodepools:
     monitoring: false
     privateNetworking: false
     region: us-east-2
-    userdata: null
     sshPort: 22
     sshUser: ubuntu
     zone: a
