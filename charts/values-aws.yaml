@@ -53,7 +53,7 @@ nodepools:
   ami: "ami-0e6577a75723c81f8"
 
   # AWS spot instance duration in minutes (60, 120, 180, 240, 300, or 360)
-  # blockDurationMinutes: 0
+  blockDurationMinutes: 0
 
   # AWS root device name
   deviceName: "/dev/sda1"

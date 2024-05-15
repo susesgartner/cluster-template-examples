@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: template-cluster
+  name: 
 
   # specify cluster labels
   labels: {}
@@ -41,21 +41,4 @@ monitoring:
   # values:
   #   foo: bar
 #Default nodepools
-nodepools:
-  '0':
-    name: nodepool1
-    quantity: 3
-    etcd: true
-    worker: true
-    controlplane: true
-    ami: ami-0e6577a75723c81f8
-    backups: false
-    ipv6: false
-    monitoring: false
-    privateNetworking: false
-    region: us-east-2
-    sshPort: 22
-    sshUser: ubuntu
-    zone: a
-    instanceType: t3a.medium
-    rootSize: '"100"'
+
