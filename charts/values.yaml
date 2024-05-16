@@ -130,7 +130,7 @@ nodepools:
 
     # AWS VPC subnet id
     #For QA use only this is not a production vpc ID
-    subnetId: "vpc-bfccf4d7"
+    vpcId: "vpc-bfccf4d7"
 
     # Set this flag to enable CloudWatch monitoring
     monitoring: false

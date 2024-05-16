@@ -86,8 +86,8 @@ sshKeyContents: {{ $nodepool.sshKeyContents }}
 {{- if $nodepool.sshUser }}
 sshUser: {{ $nodepool.sshUser }}
 {{- end }}
-{{- if $nodepool.subnetId }}
-subnetId: {{ $nodepool.subnetId }}
+{{- if $nodepool.vpcId }}
+vpcId: {{ $nodepool.vpcId }}
 {{- end }}
 {{- if $nodepool.tags }}
 tags: {{ $nodepool.tags }}
@@ -201,8 +201,8 @@ sshKeyContents: {{ $nodepool.sshKeyContents }}
 {{- if $nodepool.sshUser }}
 sshUser: {{ $nodepool.sshUser }}
 {{- end }}
-{{- if $nodepool.subnetId }}
-subnetId: {{ $nodepool.subnetId }}
+{{- if $nodepool.vpcId }}
+vpcId: {{ $nodepool.vpcId }}
 {{- end }}
 {{- if $nodepool.tags }}
 tags: {{ $nodepool.tags }}
