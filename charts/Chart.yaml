@@ -1,7 +1,7 @@
 apiVersion: v1
-name: cluster-template6
+name: cluster-template-1.30.2
 description: Cluster template for rke2
-version: 0.0.6
+version: 0.0.2
 annotations:
-  catalog.cattle.io/type: cluster-template6
+  catalog.cattle.io/type: cluster-template-1.30.2
   catalog.cattle.io/namespace: fleet-default
