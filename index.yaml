@@ -1,6 +1,6 @@
 apiVersion: v1
 entries:
-  cluster-template1.29.6:
+  cluster-template1:
   - annotations:
       catalog.cattle.io/namespace: fleet-default
       catalog.cattle.io/type: cluster-template
@@ -8,7 +8,7 @@ entries:
     created: "2023-08-25T15:54:51.604663-08:00"
     description: Cluster template for 2.9 release testing k8s 1.29.6
     digest: 6f6449256b6bf5d2baeab8b6c82dbef08023ac203a33772fc1a70d441526b137
-    name: cluster-template-1.29.6
+    name: cluster-template1
     urls:
     - cluster-template-1.29.6.tgz
     version: 0.0.1
